@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHOTOMINAC — Your photos, remembered</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+<!-- ============ RAIL (icon sidebar) ============ -->
+<aside class="rail" id="rail">
+  <div class="rail-top">
+    <div class="rail-logo" title="PHOTOMINAC">P</div>
+    <nav class="rail-nav">
+      <button class="rail-btn is-active" data-view="gallery" title="Gallery">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        <span>Gallery</span>
+      </button>
+    </nav>
+  </div>
+
+  <div class="rail-bottom">
+    <!-- account menu, only visible once "logged in" -->
+    <nav class="rail-account-nav" id="accountNav">
+      <button class="rail-btn" data-view="import" title="Import">
+        <svg viewBox="0 0 24 24"><path d="M12 3v12m0-12l-4.5 4.5M12 3l4.5 4.5"/><path d="M4 16v2.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V16"/></svg>
+        <span>Import</span>
+      </button>
+      <button class="rail-btn" data-view="albums" title="Albums">
+        <svg viewBox="0 0 24 24"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h4l1.6 2H18.5A2.5 2.5 0 0 1 21 9.5v7A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5v-9Z"/></svg>
+        <span>Albums</span>
+      </button>
+      <button class="rail-btn" data-view="memories" title="Memories">
+        <svg viewBox="0 0 24 24"><path d="M12 21s-7.2-4.7-9.8-9.1C.6 8.7 2 5 5.6 4.4c2-.3 3.7.6 4.9 2.2 1.2-1.6 2.9-2.5 4.9-2.2C19 5 20.4 8.7 18.8 11.9 16.2 16.3 12 21 12 21Z"/></svg>
+        <span>Memories</span>
+      </button>
+      <button class="rail-btn" data-view="about" title="About">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>
+        <span>About</span>
+      </button>
+    </nav>
+
+    <button class="rail-profile" id="profileBtn" title="Account">
+      <span class="avatar" id="avatar">G</span>
+    </button>
+  </div>
+</aside>
+
+<!-- ============ MAIN ============ -->
+<main class="main">
+
+  <!-- ---------- GALLERY VIEW ---------- -->
+  <section class="view is-active" id="view-gallery">
+    <header class="topbar">
+      <div class="brand">
+        <h1>Photominac</h1>
+        <p>a quiet place for every picture you've kept</p>
+      </div>
+      <div class="filters" id="filters">
+        <button class="chip is-active" data-filter="all">All</button>
+        <button class="chip" data-filter="nature">Nature</button>
+        <button class="chip" data-filter="people">People</button>
+        <button class="chip" data-filter="travel">Travel</button>
+        <button class="chip" data-filter="architecture">Architecture</button>
+        <button class="chip" data-filter="animals">Animals</button>
+      </div>
+    </header>
+
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <!-- ---------- IMPORT VIEW ---------- -->
+  <section class="view" id="view-import">
+    <header class="topbar topbar--simple">
+      <div class="brand"><h1>Import</h1><p>bring photos in from your device</p></div>
+    </header>
+
+    <div class="panel">
+      <label class="dropzone" id="dropzone" for="fileInput">
+        <svg viewBox="0 0 24 24"><path d="M12 3v12m0-12l-4.5 4.5M12 3l4.5 4.5"/><path d="M4 16v2.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V16"/></svg>
+        <strong>Drop images here, or click to browse</strong>
+        <span>JPG, PNG or WEBP — stays on this device for this session</span>
+        <input type="file" id="fileInput" accept="image/*" multiple hidden>
+      </label>
+
+      <div class="import-tag-row">
+        <label for="importCategory">Tag new imports as</label>
+        <select id="importCategory">
+          <option value="nature">Nature</option>
+          <option value="people">People</option>
+          <option value="travel">Travel</option>
+          <option value="architecture">Architecture</option>
+          <option value="animals">Animals</option>
+          <option value="imported" selected>Uncategorized</option>
+        </select>
+      </div>
+
+      <div class="import-grid" id="importGrid"></div>
+    </div>
+  </section>
+
+  <!-- ---------- ALBUMS VIEW ---------- -->
+  <section class="view" id="view-albums">
+    <header class="topbar topbar--simple">
+      <div class="brand"><h1>Albums</h1><p>collections, made for you and made by you</p></div>
+    </header>
+
+    <div class="panel">
+      <div class="album-block">
+        <div class="album-block-head">
+          <h2>Picked for you</h2>
+          <button class="btn-ghost" id="reshuffleBtn">Shuffle again</button>
+        </div>
+        <p class="muted">A rotating handful of shots from across your library.</p>
+        <div class="strip" id="smartAlbumStrip"></div>
+      </div>
+
+      <div class="album-block">
+        <div class="album-block-head">
+          <h2>Build an album</h2>
+        </div>
+        <form id="albumForm" class="album-form">
+          <input type="text" id="albumName" placeholder="Name this album — e.g. Sunday walks" required>
+          <button type="submit" class="btn-primary">Create album</button>
+        </form>
+        <p class="muted">Tap photos below to add them, then create.</p>
+        <div class="pick-grid" id="albumPickGrid"></div>
+      </div>
+
+      <div class="album-block">
+        <div class="album-block-head"><h2>Your albums</h2></div>
+        <div class="strip strip--albums" id="userAlbums">
+          <p class="empty-note">Nothing here yet — build one above.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- MEMORIES VIEW ---------- -->
+  <section class="view" id="view-memories">
+    <header class="topbar topbar--simple">
+      <div class="brand"><h1>Memories</h1><p>the same photos, sorted by how long ago</p></div>
+    </header>
+
+    <div class="panel">
+      <div class="flashback" id="flashback"></div>
+      <div class="memory-groups" id="memoryGroups"></div>
+    </div>
+  </section>
+
+  <!-- ---------- ABOUT VIEW ---------- -->
+  <section class="view" id="view-about">
+    <header class="topbar topbar--simple">
+      <div class="brand"><h1>About Photominac</h1><p>what it does, and why it's built differently</p></div>
+    </header>
+
+    <div class="panel about-panel">
+      <div class="about-intro">
+        <p>Most photo apps ask you to trade privacy for convenience, or organization for storage. Photominac keeps
+        the three in balance: everything is grouped automatically, nothing leaves your session without your say,
+        and albums build themselves while you keep full control.</p>
+      </div>
+
+      <h2 class="section-title">How it compares</h2>
+      <div class="compare-table" id="compareTable"></div>
+
+      <h2 class="section-title">Using Photominac</h2>
+      <ol class="howto">
+        <li>
+          <strong>Import your photos.</strong>
+          <p>Open Import from your profile menu, drop in a batch of images, and tag them with a category —
+          or leave them uncategorized and sort later.</p>
+        </li>
+        <li>
+          <strong>Let albums build themselves.</strong>
+          <p>Photominac keeps a rotating "Picked for you" album automatically. Build your own by naming it
+          and tapping the photos that belong.</p>
+        </li>
+        <li>
+          <strong>Browse the gallery.</strong>
+          <p>Filter by category, hover to preview, and click any photo to open it full-screen with the
+          lightbox — arrow through the set with the on-screen controls or your keyboard.</p>
+        </li>
+        <li>
+          <strong>Revisit your memories.</strong>
+          <p>Every import is grouped by week, month and year automatically, with an "on this day" flashback
+          surfaced at the top each time you visit.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <figure class="lb-figure">
+    <img id="lbImage" src="" alt="">
+    <figcaption id="lbCaption"></figcaption>
+  </figure>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
+</div>
+
+<!-- ============ LOGIN MODAL ============ -->
+<div class="modal-overlay" id="loginOverlay">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    <div class="modal-mark">P</div>
+    <h2>Sign in to Photominac</h2>
+    <p class="muted">This is a demo login — any name will do.</p>
+    <form id="loginForm">
+      <label>
+        Name
+        <input type="text" id="loginName" placeholder="e.g. Sam" required>
+      </label>
+      <label>
+        Email
+        <input type="email" id="loginEmail" placeholder="you@example.com" required>
+      </label>
+      <button type="submit" class="btn-primary btn-block">Continue</button>
+    </form>
+  </div>
+</div>
+
+<script src="Script.js"></script>
+</body>
+</html>
