@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calc — four instruments, one panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="brand">calc<span>.</span>panel</div>
+  <div class="nav-group">
+    <div class="nav-label">Instruments</div>
+    <button class="nav-btn active" data-mode="basic" style="--nav-color:#8fb8de">
+      <span class="dot"></span><span class="icon">123</span> Basic
+    </button>
+    <button class="nav-btn" data-mode="scientific" style="--nav-color:#f2b84b">
+      <span class="dot"></span><span class="icon">√x</span> Scientific
+    </button>
+    <button class="nav-btn" data-mode="graphing" style="--nav-color:#74c69d">
+      <span class="dot"></span><span class="icon">ƒx</span> Graphing
+    </button>
+    <button class="nav-btn" data-mode="financial" style="--nav-color:#c1666b">
+      <span class="dot"></span><span class="icon">$%</span> Financial
+    </button>
+    <div class="nav-label">Reference</div>
+    <button class="nav-btn" data-mode="about" style="--nav-color:#9aa0a8">
+      <span class="dot"></span><span class="icon">?</span> About
+    </button>
+  </div>
+  <div class="sidebar-foot">Four instruments, one panel.<br>Keyboard input supported on Basic &amp; Scientific.</div>
+</aside>
+
+<main class="content">
+
+  <!-- BASIC -->
+  <section class="mode-panel active" id="panel-basic">
+    <div class="mode-head">
+      <h1>Basic</h1>
+      <span class="tagline">Everyday arithmetic — receipts, bills, quick sums.</span>
+    </div>
+    <div class="calc">
+      <div class="calc-body">
+        <div class="screen">
+          <div class="preview" id="basic-preview">&nbsp;</div>
+          <div class="main-display" id="basic-display">0</div>
+        </div>
+        <div class="keys" id="basic-keys">
+          <button class="key func" data-action="clear">AC</button>
+          <button class="key func" data-action="negate">±</button>
+          <button class="key func" data-action="percent">%</button>
+          <button class="key op" data-op="÷">÷</button>
+
+          <button class="key" data-num="7">7</button>
+          <button class="key" data-num="8">8</button>
+          <button class="key" data-num="9">9</button>
+          <button class="key op" data-op="×">×</button>
+
+          <button class="key" data-num="4">4</button>
+          <button class="key" data-num="5">5</button>
+          <button class="key" data-num="6">6</button>
+          <button class="key op" data-op="−">−</button>
+
+          <button class="key" data-num="1">1</button>
+          <button class="key" data-num="2">2</button>
+          <button class="key" data-num="3">3</button>
+          <button class="key op" data-op="+">+</button>
+
+          <button class="key wide" data-num="0">0</button>
+          <button class="key" data-action="decimal">.</button>
+          <button class="key equals" data-action="equals">=</button>
+        </div>
+      </div>
+      <div class="calc-side">
+        <div class="info-card">
+          <h3>About this mode</h3>
+          Handles addition, subtraction, multiplication, division and percentages — the four operations most desktop and pocket calculators are built around.
+          <br><br>
+          Try the keyboard: digits, <code>+ − × / *</code>, <code>Enter</code> for equals, <code>Backspace</code> to delete, <code>Esc</code> to clear.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENTIFIC -->
+  <section class="mode-panel" id="panel-scientific">
+    <div class="mode-head">
+      <h1>Scientific</h1>
+      <span class="tagline">Trigonometry, logarithms, exponents — for students and engineers.</span>
+    </div>
+    <div class="calc">
+      <div class="calc-body">
+        <div class="toggle-row">
+          <button class="toggle-btn active" id="deg-btn">DEG</button>
+          <button class="toggle-btn" id="rad-btn">RAD</button>
+        </div>
+        <div class="screen">
+          <div class="preview" id="sci-preview">&nbsp;</div>
+          <div class="main-display" id="sci-display">0</div>
+        </div>
+        <div class="keys sci" id="sci-keys">
+          <button class="key func small" data-fn="sin(">sin</button>
+          <button class="key func small" data-fn="cos(">cos</button>
+          <button class="key func small" data-fn="tan(">tan</button>
+          <button class="key func small" data-fn="log(">log</button>
+          <button class="key func small" data-fn="ln(">ln</button>
+
+          <button class="key func small" data-fn="sqrt(">√</button>
+          <button class="key func small" data-op="^">x^y</button>
+          <button class="key func small" data-fn="(">(</button>
+          <button class="key func small" data-fn=")">)</button>
+          <button class="key func" data-action="clear-sci">AC</button>
+
+          <button class="key" data-num-sci="7">7</button>
+          <button class="key" data-num-sci="8">8</button>
+          <button class="key" data-num-sci="9">9</button>
+          <button class="key op" data-op-sci="÷">÷</button>
+          <button class="key func small" data-action="del-sci">⌫</button>
+
+          <button class="key" data-num-sci="4">4</button>
+          <button class="key" data-num-sci="5">5</button>
+          <button class="key" data-num-sci="6">6</button>
+          <button class="key op" data-op-sci="×">×</button>
+          <button class="key func small" data-const="PI">π</button>
+
+          <button class="key" data-num-sci="1">1</button>
+          <button class="key" data-num-sci="2">2</button>
+          <button class="key" data-num-sci="3">3</button>
+          <button class="key op" data-op-sci="−">−</button>
+          <button class="key func small" data-const="E">e</button>
+
+          <button class="key" data-num-sci="0">0</button>
+          <button class="key" data-action="decimal-sci">.</button>
+          <button class="key func small" data-fn="1/(">1/x</button>
+          <button class="key op" data-op-sci="+">+</button>
+          <button class="key equals" data-action="equals-sci">=</button>
+        </div>
+      </div>
+      <div class="calc-side">
+        <div class="info-card">
+          <h3>About this mode</h3>
+          Adds trig, logs and exponents to the basic four operations, for multi-step formulas.
+          <br><br>
+          Angles are evaluated in <code>DEG</code> or <code>RAD</code> — toggle above the screen. <code>x^y</code> raises to a power, <code>log</code> is base 10, <code>ln</code> is natural log.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRAPHING -->
+  <section class="mode-panel" id="panel-graphing">
+    <div class="mode-head">
+      <h1>Graphing</h1>
+      <span class="tagline">Plot a function of x — the kind of screen a classroom requires.</span>
+    </div>
+    <div class="graph-wrap">
+      <div class="graph-panel">
+        <div class="graph-input-row">
+          <input type="text" id="graph-fn" value="sin(x)" placeholder="e.g. x^2 - 3*x + 2">
+          <button class="graph-btn" id="graph-plot">Plot</button>
+        </div>
+        <canvas id="graphCanvas" width="1120" height="680"></canvas>
+        <div class="graph-controls">
+          <span id="graph-range">x: −10 to 10</span>
+          <div class="zoom-group">
+            <button id="zoom-out">−</button>
+            <button id="zoom-in">+</button>
+            <button id="zoom-reset">⟳</button>
+          </div>
+        </div>
+        <div class="graph-presets">
+          <span class="preset-chip" data-fn="x^2">x²</span>
+          <span class="preset-chip" data-fn="sin(x)">sin(x)</span>
+          <span class="preset-chip" data-fn="cos(x)*x">cos(x)·x</span>
+          <span class="preset-chip" data-fn="1/x">1/x</span>
+          <span class="preset-chip" data-fn="sqrt(x)">√x</span>
+          <span class="preset-chip" data-fn="x^3 - 2*x">x³ − 2x</span>
+        </div>
+      </div>
+      <div class="calc-side">
+        <div class="info-card">
+          <h3>About this mode</h3>
+          Enter any function of <code>x</code> using <code>+ − * / ^</code> and functions like <code>sin, cos, tan, sqrt, log, abs</code>.
+          <br><br>
+          Use <code>+</code> / <code>−</code> to zoom the visible range, and the presets below the canvas to try common curves.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINANCIAL -->
+  <section class="mode-panel" id="panel-financial">
+    <div class="mode-head">
+      <h1>Financial</h1>
+      <span class="tagline">Loan payments, interest, and amortization — built for money math.</span>
+    </div>
+    <div class="fin-wrap">
+      <div class="fin-form">
+        <div class="field">
+          <label for="fin-principal">Loan amount (principal)</label>
+          <input type="number" id="fin-principal" value="500000">
+        </div>
+        <div class="field">
+          <label for="fin-rate">Annual interest rate (%)</label>
+          <input type="number" id="fin-rate" value="8.5" step="0.1">
+        </div>
+        <div class="field">
+          <label for="fin-years">Loan term (years)</label>
+          <input type="number" id="fin-years" value="5">
+        </div>
+        <button class="graph-btn" id="fin-calc">Calculate</button>
+      </div>
+      <div class="fin-results">
+        <div class="fin-summary">
+          <div class="fin-stat"><div class="label">Monthly payment</div><div class="value" id="fin-monthly">—</div></div>
+          <div class="fin-stat"><div class="label">Total interest</div><div class="value" id="fin-interest">—</div></div>
+          <div class="fin-stat"><div class="label">Total repaid</div><div class="value" id="fin-total">—</div></div>
+        </div>
+        <table class="amort" id="fin-table">
+          <thead>
+            <tr><th>Year</th><th>Principal paid</th><th>Interest paid</th><th>Balance remaining</th></tr>
+          </thead>
+          <tbody id="fin-table-body">
+            <tr><td colspan="4" style="color:var(--muted); text-align:center; padding:20px;">Enter loan details and press Calculate</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="mode-panel" id="panel-about">
+    <div class="mode-head">
+      <h1>About the four instruments</h1>
+    </div>
+    <p class="about-intro">Every calculator on this panel targets a different kind of problem. Below is a quick reference for what each one is built for, how they differ, and roughly how much they can do.</p>
+
+    <div class="type-grid">
+      <div class="type-card" style="--card-color:#8fb8de">
+        <h4>Basic</h4>
+        <p>Handles everyday math — addition, subtraction, multiplication, division and percentages. Found in pocket devices and till receipts, built for speed over depth.</p>
+      </div>
+      <div class="type-card" style="--card-color:#f2b84b">
+        <h4>Scientific</h4>
+        <p>Adds trigonometry, logarithms, exponents and statistical functions. Used by students and engineers to solve multi-step formulas by hand.</p>
+      </div>
+      <div class="type-card" style="--card-color:#74c69d">
+        <h4>Graphing</h4>
+        <p>Plots functions visually, solves simultaneous equations, and handles matrices on a larger screen. Standard equipment in high school and college math classes.</p>
+      </div>
+      <div class="type-card" style="--card-color:#c1666b">
+        <h4>Financial</h4>
+        <p>Purpose-built for business and accounting: loan amortization, cash flow, interest rates and compound interest calculations.</p>
+      </div>
+    </div>
+
+    <p class="compare-title">Feature comparison</p>
+    <table class="compare">
+      <thead>
+        <tr><th>Capability</th><th style="color:#8fb8de">Basic</th><th style="color:#f2b84b">Scientific</th><th style="color:#74c69d">Graphing</th><th style="color:#c1666b">Financial</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Core arithmetic (+ − × ÷)</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Percentages</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Trigonometry &amp; logarithms</td><td>—</td><td>✓</td><td>✓</td><td>—</td></tr>
+        <tr><td>Visual function plotting</td><td>—</td><td>—</td><td>✓</td><td>—</td></tr>
+        <tr><td>Matrices &amp; simultaneous equations</td><td>—</td><td>—</td><td>✓</td><td>—</td></tr>
+        <tr><td>Loan amortization</td><td>—</td><td>—</td><td>—</td><td>✓</td></tr>
+        <tr><td>Compound interest &amp; cash flow</td><td>—</td><td>—</td><td>—</td><td>✓</td></tr>
+        <tr><td>Typical screen</td><td>Single line</td><td>Two lines</td><td>Full graphic</td><td>Multi-line</td></tr>
+      </tbody>
+    </table>
+
+    <div class="chart-block">
+      <p class="compare-title">Illustrative complexity index (relative number of functions available)</p>
+      <div class="bar-row">
+        <div class="bar-label">Basic</div>
+        <div class="bar-track"><div class="bar-fill" style="width:14%; background:#8fb8de;"><span>6</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Scientific</div>
+        <div class="bar-track"><div class="bar-fill" style="width:64%; background:#f2b84b;"><span>28</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Graphing</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%; background:#74c69d;"><span>44</span></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Financial</div>
+        <div class="bar-track"><div class="bar-fill" style="width:45%; background:#c1666b;"><span>20</span></div></div>
+      </div>
+    </div>
+
+    <div class="chart-block">
+      <p class="compare-title">Typical primary user</p>
+      <div class="bar-row"><div class="bar-label">Basic</div><div class="bar-track"><div class="bar-fill" style="width:40%; background:#8fb8de;"><span>General public</span></div></div></div>
+      <div class="bar-row"><div class="bar-label">Scientific</div><div class="bar-track"><div class="bar-fill" style="width:70%; background:#f2b84b;"><span>Students / engineers</span></div></div></div>
+      <div class="bar-row"><div class="bar-label">Graphing</div><div class="bar-track"><div class="bar-fill" style="width:85%; background:#74c69d;"><span>High school / college</span></div></div></div>
+      <div class="bar-row"><div class="bar-label">Financial</div><div class="bar-track"><div class="bar-fill" style="width:60%; background:#c1666b;"><span>Business / finance</span></div></div></div>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
